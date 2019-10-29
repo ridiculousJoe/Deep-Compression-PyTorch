@@ -1,0 +1,11 @@
+initial_accuracy 95.4
+accuracy_after_pruning 95.51
+accuracy_after_retraining 95.11
+accuracy_after_pruning 11.47
+initial_accuracy 95.4
+accuracy_after_pruning 95.51
+initial_accuracy 95.4
+accuracy_after_pruning 95.51
+accuracy_after_retraining 95.11
+accuracy_after_pruning 94.98
+accuracy_after_retraining 95.16
