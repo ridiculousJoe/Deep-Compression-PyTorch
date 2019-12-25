@@ -147,21 +147,3 @@ util.log(args.log, f"accuracy_after_retraining {accuracy}")
 
 print("--- After Retraining ---")
 util.print_nonzeros(model)
-
-# Pruning
-model.prune_by_std(args.sensitivity)
-accuracy = test()
-util.log(args.log, f"accuracy_after_pruning {accuracy}")
-print("--- After pruning ---")
-util.print_nonzeros(model)
-
-# Retrain
-print("--- Retraining ---")
-optimizer.load_state_dict(initial_optimizer_state_dict) # Reset the optimizer
-train(args.epochs)
-torch.save(model, f"saves/model_after_retraining.ptmodel")
-accuracy = test()
-util.log(args.log, f"accuracy_after_retraining {accuracy}")
-
-print("--- After Retraining ---")
-util.print_nonzeros(model)

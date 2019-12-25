@@ -8,7 +8,7 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms
 
 def log(filename, content):
-    with open(filename, 'a') as f:
+    with open(filename, 'w') as f:
         content += "\n"
         f.write(content)
 
@@ -23,6 +23,7 @@ def print_model_parameters(model, with_values=False):
 
 
 def print_nonzeros(model):
+    output = ""
     nonzero = total = 0
     for name, p in model.named_parameters():
         if 'mask' in name:
@@ -32,9 +33,9 @@ def print_nonzeros(model):
         total_params = np.prod(tensor.shape)
         nonzero += nz_count
         total += total_params
-        print(f'{name:20} | nonzeros = {nz_count:7} / {total_params:7} ({100 * nz_count / total_params:6.2f}%) | total_pruned = {total_params - nz_count :7} | shape = {tensor.shape}')
-    print(f'alive: {nonzero}, pruned : {total - nonzero}, total: {total}, Compression rate : {total/nonzero:10.2f}x  ({100 * (total-nonzero) / total:6.2f}% pruned)')
-
+        output += f'{name:20} | nonzeros = {nz_count:7} / {total_params:7} ({100 * nz_count / total_params:6.2f}%) | total_pruned = {total_params - nz_count :7} | shape = {tensor.shape}\n'
+    output += f'alive: {nonzero}, pruned : {total - nonzero}, total: {total}, Compression rate : {total/nonzero:10.2f}x  ({100 * (total-nonzero) / total:6.2f}% pruned)\n'
+    return output
 
 def test(model, use_cuda=True):
     kwargs = {'num_workers': 5, 'pin_memory': True} if use_cuda else {}
