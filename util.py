@@ -8,7 +8,7 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms
 
 def log(filename, content):
-    with open(filename, 'w') as f:
+    with open(filename, 'a') as f:
         content += "\n"
         f.write(content)
 
