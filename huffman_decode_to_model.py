@@ -25,7 +25,7 @@ use_cuda = not args.no_cuda and torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else 'cpu')
 
 model = LeNet(mask=True).to(device)
-huffman_decode_model(model)
+huffman_decode_model(model, 'encodings-48X')
 util.print_nonzeros(model)
 
 # Loader
