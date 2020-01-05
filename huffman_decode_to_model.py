@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import datasets, transforms
 
-from models import LeNet
+from net.models import LeNet
 
 parser = argparse.ArgumentParser(description='Huffman encode a quantized model')
 parser.add_argument('--modelDir', type=str, default='encodings/', 
